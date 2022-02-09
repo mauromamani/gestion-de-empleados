@@ -1,0 +1,43 @@
+{
+  "name": "base-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.13"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "build/**/*",
+      "dist/**/*",
+      "src/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "sweetalert2": "^11.4.0"
+  }
+}
