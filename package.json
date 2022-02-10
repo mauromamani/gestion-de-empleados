@@ -6,14 +6,17 @@
   "type": "commonjs",
   "scripts": {
     "dev": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "db:migrate": "npx prisma migrate dev --name",
+    "db:gen-client": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^17.0.0",
-    "electron-builder": "^22.14.13"
+    "electron-builder": "^22.14.13",
+    "prisma": "^3.9.1"
   },
   "build": {
     "appId": "com.my-website.my-app",
@@ -37,6 +40,7 @@
     }
   },
   "dependencies": {
+    "@prisma/client": "^3.9.1",
     "handlebars": "^4.7.7",
     "sweetalert2": "^11.4.0"
   }

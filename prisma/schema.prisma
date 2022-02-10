@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/database/prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:1234@localhost:3306/test-prisma"
+}
+
+model Empleado {
+  @@map(name: "empleados")
+
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  apellido  String
+  creado    DateTime @default(now())
+}
+
