@@ -10,16 +10,35 @@
 </head>
 
 <body>
+    <div class="container">
+        <h1>Formulario de carga</h1>
 
-    <h1>Formulario de carga</h1>
+        <form id="formulario">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido">
+            </div>
+            <div class="mb-3">
+                <select id="tipo" class="form-select" aria-label="Default select example">
+                    <option selected>Elegir tipo de empleado</option>
+                    <option id="empleado" value="empleado">Empleado</option>
+                    <option id="seguridad" value="seguridad">Seguridad</option>
+                    <option id="limpieza" value="limpieza">Limpieza</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </form>
 
-    <div id="formulario">
+        <a class="btn btn-primary" href="../home/home.html">casita</a>
 
 
     </div>
 
 </body>
-
-
+<script src="./form.js"></script>
 
 </html>
