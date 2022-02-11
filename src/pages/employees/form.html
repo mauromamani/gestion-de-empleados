@@ -13,22 +13,38 @@
     <div class="container">
         <h1>Formulario de carga</h1>
 
-        <form id="formulario">
+        <form id="formulario" class="row g-3 needs-validation" novalidate>
             <div class="mb-3">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
+                <label for="validationCustom01" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required>
+                <div class="valid-feedback">
+                    Correcto
+                </div>
+                <div class="invalid-feedback">
+                    Por Favor Coloque un nombre
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido">
+                <input type="text" class="form-control" id="apellido" required>
+                <div class="valid-feedback">
+                    Correcto
+                </div>
+                <div class="invalid-feedback">
+                    Por Favor Coloque un apellido
+                </div>
             </div>
             <div class="mb-3">
-                <select id="tipo" class="form-select" aria-label="Default select example">
-                    <option selected>Elegir tipo de empleado</option>
+                <label id="validationCustom04">Elegir tipo de empleado</label>
+                <select class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Elegir</option>
                     <option id="empleado" value="empleado">Empleado</option>
                     <option id="seguridad" value="seguridad">Seguridad</option>
                     <option id="limpieza" value="limpieza">Limpieza</option>
                 </select>
+                <div class="invalid-feedback">
+                    Por Favor elija un tipo de empleado
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Cargar</button>
         </form>
@@ -40,5 +56,6 @@
 
 </body>
 <script src="./form.js"></script>
+
 
 </html>
