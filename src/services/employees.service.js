@@ -2,23 +2,86 @@ const { prisma } = require('../database');
 
 /**
  * @name getAllEmployees
- * @description retorna un arreglo de empleados o un arreglo vacío
- * @returns []Empleados || []
+ * @description retorna un arreglo de objetos Empleado o un arreglo vacio
+ * @returns [{}Empleado] || []
  */
 const getAllEmployees = async () => {
   return await prisma.empleado.findMany();
 };
 
-const createEmployee = async () => {
+/**
+ * @name getEmployeeById
+ * @description retorna un empleado dado un id; en caso de no existir retorna null
+ * @params id: number
+ * @returns {}Empleado || null
+ */
+const getEmployeeById = async (id) => {
+  const employee = await prisma.empleado.findUnique({ where: { id } });
+
+  if (!employee) {
+    return null;
+  }
+
+  return employee;
+};
+
+/**
+ * @name createEmployee
+ * @description crea un empleado dado los parametros, lo retorna
+ * @params data: { nombre: string, apellido: string }
+ * @returns {}Empleado
+ */
+const createEmployee = async (data) => {
   return await prisma.empleado.create({
     data: {
-      nombre: 'perro',
-      apellido: 'loco',
+      nombre: data.nombre,
+      apellido: data.apellido,
     },
   });
 };
 
+/**
+ * @name updateEmployee
+ * @description modifica un empleado dado un id y data; en caso de no existir retorna null
+ * @params id: number, data: { nombre: string, apellido: string }
+ * @returns {}Empleado || null
+ */
+const updateEmployee = async (id, data) => {
+  const employee = await getEmployeeById(id);
+
+  if (!employee) {
+    return null;
+  }
+
+  return await prisma.empleado.update({
+    where: { id },
+    data: {
+      nombre: data.nombre,
+      apellido: data.apellido,
+    },
+  });
+};
+
+/**
+ * @name deleteEmployee
+ * @description elimina y retorna un empleado dado un id; en caso de no existir retorna null
+ * @params id: number
+ * @returns {}Empleado || null
+ */
+const deleteEmployee = async (id) => {
+  const employee = await getEmployeeById(id);
+
+  if (!employee) {
+    return null;
+  }
+
+  return await prisma.empleado.delete({ where: { id } });
+};
+
 module.exports = {
   getAllEmployees,
+  getEmployeeById,
   createEmployee,
+  deleteEmployee,
+  updateEmployee,
 };
