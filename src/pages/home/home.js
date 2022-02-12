@@ -41,7 +41,7 @@ async function loadEmployees() {
       summary: false,
     },
     style: {
-      container: {
+      table: {
         width: '100%',
       },
     },
