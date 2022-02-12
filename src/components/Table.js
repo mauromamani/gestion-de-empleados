@@ -1,9 +1,15 @@
 const table = (employee) => {
   return `
         <tr>
-          <th scope="row">${employee.nombre}</th>
+          <td>${employee.nombre}</td>
           <td>${employee.apellido}</td>
-          <td>${employee.creado}</td>
+          <td>${employee.nombre}</td>
+          <td>
+            <button class="btn btn-secondary">Modificar</button>
+          </td>
+          <td>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
         </tr>
     `;
 };
