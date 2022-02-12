@@ -1,28 +1,34 @@
+const { Grid } = require('gridjs');
+const { alertMessage } = require('../../components/alertMessage');
 const { getAllEmployees } = require('../../services/employees.service');
-const { table } = require('../../components/Table');
+
 // HTMl ref's
-const employeesTable = document.getElementById('employees-table');
+const tableWrapper = document.getElementById('table-wrapper');
 
 // Events
 window.addEventListener('DOMContentLoaded', loadEmployees);
 
 // Functions
-
-/**
- * @name loadEmployees
- * @description agrega los empleados al documento
- */
 async function loadEmployees() {
   const employees = await getAllEmployees();
 
   if (!employees.length) {
-    employeesTable.innerHTML = `
-      <h1>No hay empleados cargados</h1>
-    `;
+    tableWrapper.innerHTML = alertMessage(
+      'alert-info',
+      'No hay empleados registrados'
+    );
     return;
   }
 
-  employees.forEach((employee) => {
-    employeesTable.innerHTML += table(employee);
-  });
+  const data = employees.map((e) => ({
+    nombre: e.nombre,
+    apellido: e.apellido,
+    creado: e.nombre,
+  }));
+
+  new Grid({
+    columns: ['Nombre', 'Apellido', 'Creado'],
+    sort: true,
+    data: data,
+  }).render(tableWrapper);
 }
