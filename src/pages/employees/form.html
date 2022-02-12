@@ -45,42 +45,39 @@
   <!-- fin de nav -->
 
   <div class="container-fluid p-5 pt-3">
-    <h1>Formulario de carga</h1>
+    <h1 class="fs-2 mt-3 text-center">Ingrese los datos de un Empleado</h1>
 
-    <form id="formulario" class="row g-3 needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="validationCustom01" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
-        <div class="valid-feedback">
-          Correcto
+    <form id="formulario">
+      <div class="row mt-4">
+        <!-- input -->
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" required>
         </div>
-        <div class="invalid-feedback">
-          Por Favor Coloque un nombre
+        <!-- input -->
+        <div class="col-md-4">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="apellido" required>
         </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" required>
-        <div class="valid-feedback">
-          Correcto
-        </div>
-        <div class="invalid-feedback">
-          Por Favor Coloque un apellido
-        </div>
-      </div>
-      <div class="mb-3">
-        <label id="validationCustom04">Elegir tipo de empleado</label>
-        <select class="form-select" id="validationCustom04" required>
-          <option selected disabled value="">Elegir</option>
-          <option id="empleado" value="empleado">Empleado</option>
-          <option id="seguridad" value="seguridad">Seguridad</option>
-          <option id="limpieza" value="limpieza">Limpieza</option>
-        </select>
-        <div class="invalid-feedback">
-          Por Favor elija un tipo de empleado
+        <!-- input -->
+        <div class="col-md-4">
+          <label class="form-label">Elegir tipo de empleado</label>
+          <select class="form-select" required>
+            <option selected disabled value="0">--Elegir--</option>
+            <option id="empleado" value="empleado">Empleado</option>
+            <option id="seguridad" value="seguridad">Seguridad</option>
+            <option id="limpieza" value="limpieza">Limpieza</option>
+          </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Cargar</button>
+      <button type="submit" class="btn btn-primary mt-5 d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+        </svg>
+        <div class="mx-1">Cargar Empleado</div>
+      </button>
     </form>
   </div>
 
