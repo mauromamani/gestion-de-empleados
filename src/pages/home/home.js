@@ -1,4 +1,5 @@
 const { Grid } = require('gridjs');
+const { esES } = require('gridjs/l10n');
 const { alertMessage } = require('../../components/alertMessage');
 const { getAllEmployees } = require('../../services/employees.service');
 
@@ -20,6 +21,7 @@ async function loadEmployees() {
     return;
   }
 
+  // creo un nuevo arreglo de objetos, ya que es necesario que las columnas coincidan
   const data = employees.map((e) => ({
     nombre: e.nombre,
     apellido: e.apellido,
@@ -28,7 +30,21 @@ async function loadEmployees() {
 
   new Grid({
     columns: ['Nombre', 'Apellido', 'Creado'],
+    search: {
+      enabled: true,
+    },
     sort: true,
     data: data,
+    pagination: {
+      enabled: true,
+      limit: 6,
+      summary: false,
+    },
+    style: {
+      container: {
+        width: '100%',
+      },
+    },
+    language: esES,
   }).render(tableWrapper);
 }
