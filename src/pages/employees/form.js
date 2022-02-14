@@ -4,6 +4,7 @@ const { createEmployee } = require('../../services/employees.service');
 const formulario = document.getElementById('formulario');
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
+const tipo = document.getElementById('tipo');
 
 // Events
 formulario.addEventListener('submit', formHandler);
@@ -27,6 +28,7 @@ async function formHandler(e) {
     await createEmployee(nuevoEmpleado);
     nombre.value = '';
     apellido.value = '';
+    tipo.value = '';
     console.log('Empleado creado');
   } catch (err) {
     //mostrar alerta de error de carga

@@ -21,11 +21,17 @@ async function loadEmployees() {
     return;
   }
 
+  //funcion que formatea la fecha del objeto que recibe
+  const formatDate = (date) => {
+    let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+    return formatted_date;
+  }
   // creo un nuevo arreglo de objetos, ya que es necesario que las columnas coincidan
+  //acá llamo a la funcion para formatear la fecha y mandarla directamente a la vista ya formateada
   const data = employees.map((e) => ({
     nombre: e.nombre,
     apellido: e.apellido,
-    creado: e.nombre,
+    creado: formatDate(e.creado),
   }));
 
   new Grid({
@@ -47,4 +53,5 @@ async function loadEmployees() {
     },
     language: esES,
   }).render(tableWrapper);
+
 }
