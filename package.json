@@ -41,7 +41,7 @@
       "src/**/*"
     ],
     "directories": {
-      "buildResources": "assets",
+      "buildResources": "build",
       "output": "dist_electron"
     }
   }
