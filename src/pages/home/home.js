@@ -15,6 +15,7 @@ async function DOMLoadedHandler() {
   // creo un nuevo arreglo de objetos, ya que es necesario que las columnas coincidan
   //acá llamo a la funcion para formatear la fecha y mandarla directamente a la vista ya formateada
   const data = employees.map((e) => ({
+    id: e.id,
     nombre: e.nombre,
     apellido: e.apellido,
     creado: formatDate(e.creado),

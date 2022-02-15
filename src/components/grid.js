@@ -1,4 +1,6 @@
-const { Grid } = require('gridjs');
+const { Grid, h } = require('gridjs');
+const Swal = require('sweetalert2');
+const { deleteEmployee } = require('../services/employees.service');
 
 // Idioma de los textos del grid
 const localeEs = {
@@ -20,9 +22,66 @@ const localeEs = {
   error: 'Un error ocurrió, contacte con el adminstrador',
 };
 
+const columns = [
+  { name: 'id', hidden: true },
+  { name: 'Nombre' },
+  { name: 'Apellido' },
+  { name: 'Creado' },
+  // action buttons
+  {
+    name: 'Eliminar',
+    formatter: (_cell, row) => {
+      return h(
+        'button',
+        {
+          className: 'btn btn-danger w-100',
+          onClick: () => deleteCell(row),
+        },
+        'Eliminar'
+      );
+    },
+  },
+];
+
+// action buttons
+const deleteCell = async (row) => {
+  const id = row.cells[0].data;
+  const employeeName = row.cells[1].data;
+
+  const result = await Swal.fire({
+    title: `¿Estás seguro de eliminar a ${employeeName}?`,
+    text: 'Los cambios no pueden ser deshechos',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Si, quiero eliminarlo',
+  });
+
+  if (result.isConfirmed) {
+    try {
+      await deleteEmployee(id);
+      await Swal.fire(
+        'Eliminado!',
+        `${employeeName} fue eliminado con éxito`,
+        'success'
+      );
+      location.reload();
+    } catch (error) {
+      console.log(error);
+      Swal.fire(
+        'Error en la ejecución de esta acción',
+        'Por favor contacte con el administrador',
+        'warning'
+      );
+    }
+  }
+};
+
 const generateGrid = (data) => {
   return new Grid({
-    columns: ['Nombre', 'Apellido', 'Creado'],
+    columns,
     search: {
       enabled: true,
     },
@@ -31,7 +90,7 @@ const generateGrid = (data) => {
     pagination: {
       enabled: true,
       limit: 6,
-      summary: false,
+      summary: true,
     },
     style: {
       table: {
