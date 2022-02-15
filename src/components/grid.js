@@ -22,12 +22,26 @@ const localeEs = {
   error: 'Un error ocurrió, contacte con el adminstrador',
 };
 
+// Definicion de las columnas de la tabla
 const columns = [
   { name: 'id', hidden: true },
   { name: 'Nombre' },
   { name: 'Apellido' },
   { name: 'Creado' },
   // action buttons
+  {
+    name: 'Modificar',
+    formatter: (_cell, row) => {
+      return h(
+        'button',
+        {
+          className: 'btn btn-warning w-100',
+          onClick: () => updateCell(row),
+        },
+        'Modificar'
+      );
+    },
+  },
   {
     name: 'Eliminar',
     formatter: (_cell, row) => {
@@ -43,7 +57,7 @@ const columns = [
   },
 ];
 
-// action buttons
+// Definicion de las funciones de los botones de la tabla
 const deleteCell = async (row) => {
   const id = row.cells[0].data;
   const employeeName = row.cells[1].data;
@@ -79,6 +93,13 @@ const deleteCell = async (row) => {
   }
 };
 
+const updateCell = async (row) => {
+  const id = row.cells[0].data;
+  localStorage.setItem('id', id);
+  window.location.href = '../employees/updateForm.html';
+};
+
+// Generacion de la tabla
 const generateGrid = (data) => {
   return new Grid({
     columns,
