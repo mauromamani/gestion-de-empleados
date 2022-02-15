@@ -16,6 +16,8 @@ function createWindow() {
   });
 
   win.loadURL(`file://${path.join(__dirname, 'pages/home/home.html')}`);
+
+  win.setMenu(null);
 }
 
 app.whenReady().then(() => {
