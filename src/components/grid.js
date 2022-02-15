@@ -96,7 +96,7 @@ const deleteCell = async (row) => {
 const updateCell = async (row) => {
   const id = row.cells[0].data;
   localStorage.setItem('id', id);
-  window.location.href = '../employees/updateForm.html';
+  window.location.href = '../employees/form-edit.html';
 };
 
 // Generacion de la tabla
