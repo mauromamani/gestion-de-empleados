@@ -1,6 +1,3 @@
-const { Grid } = require('gridjs');
-const { esES } = require('gridjs/l10n');
-const { alertMessage } = require('../../components/alertMessage');
 const { generateGrid } = require('../../components/grid');
 const { getAllEmployees } = require('../../services/employees.service');
 const { formatDate } = require('../../utils/formatDate');
@@ -9,10 +6,10 @@ const { formatDate } = require('../../utils/formatDate');
 const tableWrapper = document.getElementById('table-wrapper');
 
 // Events
-window.addEventListener('DOMContentLoaded', loadEmployees);
+window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 
 // Functions
-async function loadEmployees() {
+async function DOMLoadedHandler() {
   const employees = await getAllEmployees();
 
   // creo un nuevo arreglo de objetos, ya que es necesario que las columnas coincidan
