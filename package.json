@@ -11,7 +11,13 @@
     "db:gen-client": "npx prisma generate"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mauro Mamani - Mariano Rodriguez",
+  "dependencies": {
+    "@prisma/client": "^3.9.1",
+    "gridjs": "^5.0.2",
+    "handlebars": "^4.7.7",
+    "sweetalert2": "^11.4.0"
+  },
   "license": "ISC",
   "devDependencies": {
     "electron": "^17.0.0",
@@ -19,9 +25,9 @@
     "prisma": "^3.9.1"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2019 ${author}",
+    "appId": "https://github.com/mauromamani/electron-html",
+    "productName": "Control de empleados",
+    "copyright": "Copyright © 2022 ${author}",
     "mac": {
       "category": "public.app-category.utilities"
     },
@@ -35,14 +41,8 @@
       "src/**/*"
     ],
     "directories": {
-      "buildResources": "assets",
+      "buildResources": "build",
       "output": "dist_electron"
     }
-  },
-  "dependencies": {
-    "@prisma/client": "^3.9.1",
-    "gridjs": "^5.0.2",
-    "handlebars": "^4.7.7",
-    "sweetalert2": "^11.4.0"
   }
 }
