@@ -110,7 +110,7 @@ const generateGrid = (data) => {
     data: data,
     pagination: {
       enabled: true,
-      limit: 6,
+      limit: 5,
       summary: true,
     },
     style: {
