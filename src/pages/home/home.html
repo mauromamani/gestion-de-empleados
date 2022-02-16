@@ -40,14 +40,6 @@
             <span class="d-block mx-2">Cargar Empleado</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white d-flex align-items-center" id="exportar" href="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
-            </svg>
-            <span class="d-block mx-2">Exportar Tabla</span>
-          </a>
-        </li>
       </ul>
     </div>
   </nav>
@@ -55,6 +47,14 @@
 
   <div class="container-fluid p-5 pt-3">
     <h1 class="fs-2 my-3 text-center">Empleados Registrados</h1>
+
+    <div class="text-end">
+      <button class="btn btn-sm btn-info " id="exportar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
+        </svg>
+        Exportar Tabla</button>
+    </div>
 
     <div id="table-wrapper"></div>
   </div>

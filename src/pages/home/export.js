@@ -34,7 +34,6 @@ const exportTable = async () => {
         `La Tabla fue exportada con éxito`,
         'success'
       );
-      //location.reload();
     } catch (error) {
       console.log(error);
       Swal.fire(
@@ -46,5 +45,5 @@ const exportTable = async () => {
   }
 };
 module.exports = {
-  exportTable
-}
+  exportTable,
+};

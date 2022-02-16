@@ -1,5 +1,5 @@
 {
-  "name": "base-electron",
+  "name": "control-de-empleados",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
@@ -15,7 +15,6 @@
   "dependencies": {
     "@prisma/client": "^3.9.1",
     "gridjs": "^5.0.2",
-    "handlebars": "^4.7.7",
     "sweetalert2": "^11.4.0"
   },
   "license": "ISC",
