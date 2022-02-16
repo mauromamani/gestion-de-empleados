@@ -3,7 +3,7 @@ const { alertMessage } = require('../../components/alertMessage');
 const { generateGrid } = require('../../components/grid');
 const { getAllEmployees } = require('../../services/employees.service');
 const { formatDate } = require('../../utils/formatDate');
-
+const { exportTable } = require('./export');
 // HTMl ref's
 const tableWrapper = document.getElementById('table-wrapper');
 
@@ -39,3 +39,8 @@ async function DOMLoadedHandler() {
     );
   }
 }
+
+document.getElementById('exportar').addEventListener('click', function (e) {
+  e.preventDefault();
+  exportTable();
+})
