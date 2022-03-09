@@ -1,31 +1,34 @@
-# Electron - Bootstrap
+# App de Control de Empleados
 
-### Install Dependencies
+### Descripcion
+
+Aplicacion para el control, carga de datos y seguimiento de empleados de una empresa desarrolado en JavaScript, Html, Css y Electron
+
+### Instalar Dependencias Necesarias
 
 ```
   npm install
 ```
-
-### Run Dev Mode
-
-```
-  npm run dev
-```
-
-### Compile Electron
-
-```
-  npm run build
-```
-
-### Migrate Schema
+### Migrar base de datos
 
 ```
   npm run db:migrate + name...
 ```
 
-### Generate Prisma Client
+### Correr modo desarrollador
 
 ```
-  npm run db:gen-client
+  npm run dev
 ```
+
+### Compilar Electron
+
+```
+  npm run build
+```
+
+# Contribuidores
+### Mauro Mamani
+### Mariano Rodriguez
+
+Proyecto creado y desarrollado para Cooperativa Octubres Jujuy
