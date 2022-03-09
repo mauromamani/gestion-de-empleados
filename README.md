@@ -1,8 +1,19 @@
-# App de Control de Empleados
+# App de Control de Empleados📖
 
 ### Descripcion
 
-Aplicacion para el control, carga de datos y seguimiento de empleados de una empresa desarrolado en JavaScript, Html, Css y Electron
+Aplicacion para el control, carga de datos y seguimiento de empleados de una cooperativa
+
+## Construido con 🛠️
+* [Electron](https://www.electronjs.org/)
+* JavaScript
+* [Node Js](https://nodejs.org/es/)
+* [Prisma](https://www.prisma.io/)
+* Html
+* Css
+* [Bootstrap](https://getbootstrap.com/)
+
+## Iniciar Aplicacion 🔧
 
 ### Instalar Dependencias Necesarias
 
@@ -12,7 +23,7 @@ Aplicacion para el control, carga de datos y seguimiento de empleados de una emp
 ### Migrar base de datos
 
 ```
-  npm run db:migrate + name...
+  npx prisma migrate dev
 ```
 
 ### Correr modo desarrollador
@@ -27,8 +38,11 @@ Aplicacion para el control, carga de datos y seguimiento de empleados de una emp
   npm run build
 ```
 
-# Contribuidores
-### Mauro Mamani
-### Mariano Rodriguez
+## Autores ✒️
+### Mauro Mamani (https://github.com/mauromamani)
+### Mariano Rodriguez (https://github.com/nanoo17)
 
+
+
+#
 Proyecto creado y desarrollado para Cooperativa Octubres Jujuy
