@@ -2,7 +2,7 @@ const {
   updateEmployee,
   getEmployeeById,
 } = require('../../services/employees.service');
-const Swal = require('sweetalert2');
+const { alertSuccess, alertWarning } = require('../../utils/swal');
 
 // obtenemos el id de localstorage y lo convertimos a int
 const employeeId = parseInt(localStorage.getItem('id'));
@@ -34,18 +34,9 @@ async function formHandler(e) {
 
   try {
     await updateEmployee(employeeId, updatedEmployee);
-    Swal.fire(
-      `Modificación exitosa`,
-      `${updatedEmployee.nombre} ha sido modificado con éxito`,
-      'success'
-    );
+    alertSuccess(`${updatedEmployee.nombre} ha sido modificado con éxito`);
   } catch (err) {
-    //mostrar alerta de error de carga
-    console.log('error');
-    Swal.fire(
-      'Error en la ejecución de esta acción',
-      'Por favor contacte con el administrador',
-      'warning'
-    );
+    console.log(err);
+    alertWarning();
   }
 }
