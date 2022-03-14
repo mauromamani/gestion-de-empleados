@@ -1,6 +1,10 @@
 const { Grid, h } = require('gridjs');
-const Swal = require('sweetalert2');
 const { deleteEmployee } = require('../services/employees.service');
+const {
+  alertSuccess,
+  alertWarning,
+  alertConfirmation,
+} = require('../utils/swal');
 
 // Idioma de los textos del grid
 const localeEs = {
@@ -62,33 +66,18 @@ const deleteCell = async (row) => {
   const id = row.cells[0].data;
   const employeeName = row.cells[1].data;
 
-  const result = await Swal.fire({
-    title: `¿Estás seguro de eliminar a ${employeeName}?`,
-    text: 'Los cambios no pueden ser deshechos',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Si, quiero eliminarlo',
-  });
+  const result = await alertConfirmation(
+    `¿Estás seguro de eliminar a ${employeeName}?`
+  );
 
   if (result.isConfirmed) {
     try {
       await deleteEmployee(id);
-      await Swal.fire(
-        'Eliminado!',
-        `${employeeName} fue eliminado con éxito`,
-        'success'
-      );
+      await alertSuccess(`${employeeName} fue eliminado con éxito`);
       location.reload();
     } catch (error) {
       console.log(error);
-      Swal.fire(
-        'Error en la ejecución de esta acción',
-        'Por favor contacte con el administrador',
-        'warning'
-      );
+      alertWarning();
     }
   }
 };

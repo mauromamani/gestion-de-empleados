@@ -1,5 +1,5 @@
-const Swal = require('sweetalert2');
 const { alertMessage } = require('../../components/alertMessage');
+const { alertWarning } = require('../../utils/swal');
 const { generateGrid } = require('../../components/grid');
 const { getAllEmployees } = require('../../services/employees.service');
 const { formatDate } = require('../../utils/formatDate');
@@ -16,7 +16,7 @@ async function DOMLoadedHandler() {
     const employees = await getAllEmployees();
 
     // creo un nuevo arreglo de objetos, ya que es necesario que las columnas coincidan
-    //acá llamo a la funcion para formatear la fecha y mandarla directamente a la vista ya formateada
+    // acá llamo a la funcion para formatear la fecha y mandarla directamente a la vista ya formateada
     const data = employees.map((e) => ({
       id: e.id,
       nombre: e.nombre,
@@ -28,11 +28,7 @@ async function DOMLoadedHandler() {
     grid.render(tableWrapper);
   } catch (error) {
     console.log(error);
-    Swal.fire(
-      'Error en la carga de datos',
-      'Por favor contacte con el administrador',
-      'warning'
-    );
+    alertWarning('Error en la carga de datos');
     tableWrapper.innerHTML = alertMessage(
       'alert-danger',
       'Error en la carga de datos. Por favor contacte con el administrador'
@@ -43,4 +39,4 @@ async function DOMLoadedHandler() {
 document.getElementById('exportar').addEventListener('click', function (e) {
   e.preventDefault();
   exportTable();
-})
+});
