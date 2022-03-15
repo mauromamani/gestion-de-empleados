@@ -15,7 +15,7 @@ function createWindow() {
     },
   });
 
-  win.loadURL(`file://${path.join(__dirname, 'pages/home/home.html')}`);
+  win.loadURL(`file://${path.join(__dirname, 'pages/auth/login.html')}`);
 
   // win.setMenu(null);
 }
