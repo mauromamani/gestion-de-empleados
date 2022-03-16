@@ -29,6 +29,22 @@ const getUserById = async (id) => {
 };
 
 /**
+ * @name getUserByEmail
+ * @description retorna un usuario dado un email; en caso de no existir retorna null
+ * @params email: string
+ * @returns {}Usuario || null
+ */
+const getUserByEmail = async (email) => {
+  const user = await prisma.usuario.findUnique({ where: { email } });
+
+  if (!user) {
+    return null;
+  }
+
+  return user;
+};
+
+/**
  * @name createUser
  * @description crea un usuario dado los parametros, lo retorna
  * @params data: { nombre: string, apellido: string, etc }
@@ -42,7 +58,7 @@ const createUser = async (data) => {
       dni: data.dni,
       nombreUsuario: data.nombreUsuario,
       contrasenya: data.contrasenya,
-      rol: 'USER'
+      rol: 'USER',
     },
   });
 };
@@ -93,5 +109,6 @@ module.exports = {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
-}
+  deleteUser,
+  getUserByEmail,
+};
