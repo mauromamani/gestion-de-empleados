@@ -17,7 +17,7 @@ async function DOMLoadedHandler() {
   const currentUser = getCurrentUser();
   console.log(currentUser);
 
-  nav.innerHTML = navbar(true);
+  nav.innerHTML = navbar(true, 'home');
 
   document
     .getElementById('exportar')

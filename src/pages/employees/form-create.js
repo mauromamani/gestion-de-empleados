@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 
 // Events functions
 function DOMLoadedHandler() {
-  nav.innerHTML = navbar(false);
+  nav.innerHTML = navbar(false, 'form-create');
 }
 async function formHandler(e) {
   e.preventDefault();
@@ -35,8 +35,7 @@ async function formHandler(e) {
   let auxTelefono2 = '';
   if (telefono2.value === '') {
     auxTelefono2 = null;
-  }
-  else {
+  } else {
     auxTelefono2 = parseInt(telefono2.value);
   }
   let auxEmail = '';

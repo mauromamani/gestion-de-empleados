@@ -1,9 +1,15 @@
-const navbar = (exportar) => {
+const navbar = (exportar, currentPage = null) => {
   return `<div class="container-fluid">
-  <a class="navbar-brand">Control de Empleados</a>
+  <a class="navbar-brand" ${
+    currentPage !== 'home' ? `href="../home/home.html"` : `href="#"`
+  }>Control de Empleados</a>
   <ul class="nav">
     <li class=" nav-item">
-      <a class="nav-link text-white d-flex align-items-center" href="../home/home.html">
+      <a class="nav-link text-${
+        currentPage === 'home' ? 'warning' : 'white'
+      } d-flex align-items-center" ${
+    currentPage !== 'home' ? `href="../home/home.html"` : `href="#"`
+  }>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill"
           viewBox="0 0 16 16">
           <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -14,8 +20,15 @@ const navbar = (exportar) => {
         <span class="d-block mx-2">Lista de Empleados</span>
       </a>
     </li>
+
     <li class=" nav-item">
-      <a class="nav-link text-white d-flex align-items-center" href="../employees/form-create.html">
+      <a class="nav-link text-${
+        currentPage === 'form-create' ? 'warning' : 'white'
+      } d-flex align-items-center" ${
+    currentPage !== 'form-create'
+      ? `href="../employees/form-create.html"`
+      : `href="#"`
+  }>
         <!--ico-->
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
           class="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -26,17 +39,22 @@ const navbar = (exportar) => {
         <span class="d-block mx-2">Cargar Empleado</span>
       </a>
     </li>
-    ${exportar ? `<li class="nav-item">
+
+    ${
+      exportar
+        ? `<li class="nav-item">
     <a class="nav-link text-white d-flex align-items-center" id="exportar" href="#">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
         <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
       </svg>
       <span class="d-block mx-2">Exportar Tabla</span>
     </a>
-  </li> `: ''}
+  </li> `
+        : ''
+    }
   </ul>
-</div>`
-}
+</div>`;
+};
 module.exports = {
-  navbar
-}
+  navbar,
+};
