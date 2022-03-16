@@ -1,6 +1,7 @@
 const { createEmployee } = require('../../services/employees.service');
 const { alertSuccess, alertWarning } = require('../../utils/swal');
 const { navbar } = require('../../components/navbar');
+const { formatTel, formatEmail } = require('../../utils/formatData');
 
 // Html ref's
 const formulario = document.getElementById('formulario');
@@ -24,25 +25,14 @@ window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 function DOMLoadedHandler() {
   nav.innerHTML = navbar(false, 'form-create');
 }
+
 async function formHandler(e) {
   e.preventDefault();
-  //creo los auxiliares porque si lo hago con las constantes de arriba
-  //al recargar la pagina los datos se quedan en memoria
+  //parse de datos para guardar a la db de forma correcta
   const auxDni = parseInt(dni.value);
   const auxTelefono1 = parseInt(telefono1.value);
-  //estos if son para verficar lo que viene de la vista
-  //si no tiene nada el campo, se guarda en la bd como nulo
-  let auxTelefono2 = '';
-  if (telefono2.value === '') {
-    auxTelefono2 = null;
-  } else {
-    auxTelefono2 = parseInt(telefono2.value);
-  }
-  let auxEmail = '';
-  if (email.value === '') {
-    auxEmail = null;
-  }
-
+  const auxTelefono2 = formatTel(telefono2.value);
+  const auxEmail = formatEmail(email.value);
   //formato tipo fecha para guardar en la bd
   const auxFechaNac = new Date(fechaNac.value);
 
