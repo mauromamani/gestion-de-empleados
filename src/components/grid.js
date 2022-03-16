@@ -31,10 +31,12 @@ const columns = [
   { name: 'id', hidden: true },
   { name: 'Nombre' },
   { name: 'Apellido' },
-  { name: 'Creado' },
+  { name: 'Estado' },
+  { name: 'DNI' },
+  { id: 'tipoEmpleado', name: 'Tipo de Empleado' },
   // action buttons
   {
-    name: 'Modificar',
+    name: 'Ver más',
     formatter: (_cell, row) => {
       return h(
         'button',
@@ -42,20 +44,7 @@ const columns = [
           className: 'btn btn-warning w-100',
           onClick: () => updateCell(row),
         },
-        'Modificar'
-      );
-    },
-  },
-  {
-    name: 'Eliminar',
-    formatter: (_cell, row) => {
-      return h(
-        'button',
-        {
-          className: 'btn btn-danger w-100',
-          onClick: () => deleteCell(row),
-        },
-        'Eliminar'
+        'Ver más'
       );
     },
   },
