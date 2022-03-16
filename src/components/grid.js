@@ -42,7 +42,7 @@ const columns = [
         'button',
         {
           className: 'btn btn-warning w-100',
-          onClick: () => updateCell(row),
+          onClick: () => moreInfo(row),
         },
         'Ver más'
       );
@@ -75,6 +75,12 @@ const updateCell = async (row) => {
   const id = row.cells[0].data;
   localStorage.setItem('id', id);
   window.location.href = '../employees/form-edit.html';
+};
+
+const moreInfo = (row) => {
+  const id = row.cells[0].data;
+  localStorage.setItem('employee-id', id);
+  window.location.href = '../employees/employee.html';
 };
 
 // Generacion de la tabla
