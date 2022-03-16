@@ -20,7 +20,6 @@ async function formHandler(ev) {
   try {
     // llamar al service y validar
     const user = await getUserByUsername(data.username);
-    console.log(data);
 
     // En caso de no existir el usuario es porque no existe un usuario con ese username
     if (!user) {

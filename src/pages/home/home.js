@@ -13,11 +13,17 @@ window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 
 // Functions
 async function DOMLoadedHandler() {
+  // ejemplo de obtencion del usuario autenticado
+  let authenticatedUser = localStorage.getItem('currentUser');
+  authenticatedUser = JSON.parse(authenticatedUser);
+  console.log(authenticatedUser);
+
   nav.innerHTML = navbar(true);
-  document.getElementById('exportar').addEventListener('click', function (e) {
-    e.preventDefault();
-    exportTable();
-  });
+
+  document
+    .getElementById('exportar')
+    .addEventListener('click', exportTableHandler);
+
   try {
     const employees = await getAllEmployees();
 
@@ -42,3 +48,6 @@ async function DOMLoadedHandler() {
   }
 }
 
+function exportTableHandler() {
+  exportTable();
+}
