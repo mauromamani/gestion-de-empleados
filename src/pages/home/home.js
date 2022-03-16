@@ -2,7 +2,6 @@ const { alertMessage } = require('../../components/alertMessage');
 const { alertWarning } = require('../../utils/swal');
 const { generateGrid } = require('../../components/grid');
 const { getAllEmployees } = require('../../services/employees.service');
-const { formatDate } = require('../../utils/formatDate');
 const { getCurrentUser } = require('../../utils/getCurrentUser');
 const { exportTable } = require('./export');
 const { navbar } = require('../../components/navbar');
@@ -18,7 +17,7 @@ async function DOMLoadedHandler() {
   const currentUser = getCurrentUser();
   console.log(currentUser);
 
-  nav.innerHTML = navbar(true);
+  nav.innerHTML = navbar(true, 'home');
 
   document
     .getElementById('exportar')
@@ -33,7 +32,9 @@ async function DOMLoadedHandler() {
       id: e.id,
       nombre: e.nombre,
       apellido: e.apellido,
-      creado: formatDate(e.creado),
+      estado: e.estado,
+      dni: e.dni,
+      tipoEmpleado: e.tipo,
     }));
 
     const grid = generateGrid(data);

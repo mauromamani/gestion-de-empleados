@@ -31,31 +31,33 @@ const columns = [
   { name: 'id', hidden: true },
   { name: 'Nombre' },
   { name: 'Apellido' },
-  { name: 'Creado' },
+  {
+    name: 'Estado',
+    formatter: (cell) =>
+      h(
+        'div',
+        {
+          className: `badge bg-${
+            cell === 'ALTA' ? 'success' : cell === 'PROCESO' ? 'info' : 'danger'
+          } w-100 d-flex align-items-center justify-content-center`,
+          style: 'height:30px;',
+        },
+        cell
+      ),
+  },
+  { name: 'DNI' },
+  { id: 'tipoEmpleado', name: 'Tipo de Empleado' },
   // action buttons
   {
-    name: 'Modificar',
+    name: 'Ver más',
     formatter: (_cell, row) => {
       return h(
         'button',
         {
           className: 'btn btn-warning w-100',
-          onClick: () => updateCell(row),
+          onClick: () => moreInfo(row),
         },
-        'Modificar'
-      );
-    },
-  },
-  {
-    name: 'Eliminar',
-    formatter: (_cell, row) => {
-      return h(
-        'button',
-        {
-          className: 'btn btn-danger w-100',
-          onClick: () => deleteCell(row),
-        },
-        'Eliminar'
+        'Ver más'
       );
     },
   },
@@ -86,6 +88,12 @@ const updateCell = async (row) => {
   const id = row.cells[0].data;
   localStorage.setItem('id', id);
   window.location.href = '../employees/form-edit.html';
+};
+
+const moreInfo = (row) => {
+  const id = row.cells[0].data;
+  localStorage.setItem('employee-id', id);
+  window.location.href = '../employees/employee.html';
 };
 
 // Generacion de la tabla
