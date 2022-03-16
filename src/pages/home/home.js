@@ -4,14 +4,20 @@ const { generateGrid } = require('../../components/grid');
 const { getAllEmployees } = require('../../services/employees.service');
 const { formatDate } = require('../../utils/formatDate');
 const { exportTable } = require('./export');
+const { navbar } = require('../../components/navbar');
 // HTMl ref's
 const tableWrapper = document.getElementById('table-wrapper');
-
+const nav = document.getElementById('navbar');
 // Events
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 
 // Functions
 async function DOMLoadedHandler() {
+  nav.innerHTML = navbar(true);
+  document.getElementById('exportar').addEventListener('click', function (e) {
+    e.preventDefault();
+    exportTable();
+  });
   try {
     const employees = await getAllEmployees();
 
@@ -36,7 +42,3 @@ async function DOMLoadedHandler() {
   }
 }
 
-document.getElementById('exportar').addEventListener('click', function (e) {
-  e.preventDefault();
-  exportTable();
-});

@@ -28,7 +28,7 @@ const getEmployeeById = async (id) => {
 /**
  * @name createEmployee
  * @description crea un empleado dado los parametros, lo retorna
- * @params data: { nombre: string, apellido: string }
+ * @params data: { nombre: string, apellido: string, etc }
  * @returns {}Empleado
  */
 const createEmployee = async (data) => {
@@ -36,6 +36,14 @@ const createEmployee = async (data) => {
     data: {
       nombre: data.nombre,
       apellido: data.apellido,
+      dni: data.dni,
+      email: data.email,
+      sexo: data.sexo,
+      direccion: data.direccion,
+      telefono1: data.telefono1,
+      telefono2: data.telefono2,
+      fechaNac: data.fechaNac,
+      tipo: data.tipo,
     },
   });
 };
@@ -43,7 +51,7 @@ const createEmployee = async (data) => {
 /**
  * @name updateEmployee
  * @description modifica un empleado dado un id y data; en caso de no existir retorna null
- * @params id: number, data: { nombre: string, apellido: string }
+ * @params id: number, data: { nombre: string, apellido: string, etc }
  * @returns {}Empleado || null
  */
 const updateEmployee = async (id, data) => {
@@ -58,6 +66,14 @@ const updateEmployee = async (id, data) => {
     data: {
       nombre: data.nombre,
       apellido: data.apellido,
+      dni: data.dni,
+      email: data.email,
+      sexo: data.sexo,
+      direccion: data.direccion,
+      telefono1: data.telefono1,
+      telefono2: data.telefono2,
+      fechaNac: data.fechaNac,
+      tipo: data.tipo,
     },
   });
 };
