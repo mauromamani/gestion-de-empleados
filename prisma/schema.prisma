@@ -8,15 +8,61 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:1234@localhost:3306/test-prisma"
+  url      = "mysql://root:1234@localhost:3306/sistema"
 }
 
 model Empleado {
-  @@map(name: "empleados")
-
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   nombre    String
   apellido  String
-  creado    DateTime @default(now())
+  dni       Int
+  email     String?
+  sexo      String
+  direccion String
+  telefono1 Int
+  telefono2 Int?
+  fechaNac  DateTime
+  creado    DateTime  @default(now())
+  fechaAlta DateTime? //esto va en otro formulario, al editar el estado, que solo lo puede hacer el admin
+  estado    Estados   @default(BAJA) // esto tambien va en otro formulario, 
+  //el default es para cuando se cree porque el usuario normal
+  // va a crear pero el admin es el que da de alta
+  tipo      String
+  imagenes  imagen[]
+
+  @@map(name: "empleados")
 }
 
+enum Estados {
+  ALTA
+  PROCESO
+  BAJA
+}
+
+model Usuario {
+  id            Int    @id @default(autoincrement())
+  nombre        String
+  apellido      String
+  dni           Int
+  nombreUsuario String
+  contrasenya   String
+  rol           Roles
+
+  @@map(name: "usuarios")
+}
+
+enum Roles {
+  ADMIN
+  USER
+}
+
+model imagen {
+  id         Int      @id @default(autoincrement())
+  //la relacion se la establece acá y Prisma se encarga de todo, creo jasj
+  empleado   Empleado @relation(fields: [empleadoId], references: [id])
+  empleadoId Int
+  nombre     String
+  data       Bytes
+
+  @@map(name: "imagenes")
+}
