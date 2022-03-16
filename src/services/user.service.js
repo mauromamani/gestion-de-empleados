@@ -29,13 +29,15 @@ const getUserById = async (id) => {
 };
 
 /**
- * @name getUserByEmail
- * @description retorna un usuario dado un email; en caso de no existir retorna null
+ * @name getUserByUsername
+ * @description retorna un usuario dado un username; en caso de no existir retorna null
  * @params email: string
  * @returns {}Usuario || null
  */
-const getUserByEmail = async (email) => {
-  const user = await prisma.usuario.findUnique({ where: { email } });
+const getUserByUsername = async (username) => {
+  const user = await prisma.usuario.findFirst({
+    where: { nombreUsuario: username },
+  });
 
   if (!user) {
     return null;
@@ -110,5 +112,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  getUserByEmail,
+  getUserByUsername,
 };

@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:1234@localhost:3306/sistema"
+  url      = "mysql://root:1234@localhost:3306/test-prisma"
 }
 
 model Empleado {
