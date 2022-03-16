@@ -30,7 +30,7 @@ formulario.addEventListener('submit', formHandler);
 // Events functions
 async function DOMLoadedHandler() {
   nav.innerHTML = navbar(false);
-
+  console.log(localStorage.getItem('id'));
   const employee = await getEmployeeById(employeeId);
   nombre.value = employee.nombre;
   apellido.value = employee.apellido;
