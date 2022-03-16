@@ -1,4 +1,4 @@
-const { Grid, h, html } = require('gridjs');
+const { Grid, h } = require('gridjs');
 const { deleteEmployee } = require('../services/employees.service');
 const {
   alertSuccess,
