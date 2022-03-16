@@ -1,4 +1,4 @@
-const { formatDate } = require('../../utils/formatDate');
+const { formatDate, formatDateNac } = require('../../utils/formatDate');
 const {
   alertConfirmation,
   alertSuccess,
@@ -6,7 +6,7 @@ const {
 } = require('../../utils/swal');
 const { getAllEmployees } = require('../../services/employees.service');
 const { exportar } = require('../../utils/export-table');
-
+const { formatTel, formatEmail } = require('../../utils/formatData');
 // Definicion de las funciones de los botones de la tabla
 const exportTable = async () => {
   const result = await alertConfirmation('¿Querés exportar la tabla?', null);
@@ -18,7 +18,18 @@ const exportTable = async () => {
       const ar = employees.map((empleado) => ({
         nombre: empleado.nombre,
         apellido: empleado.apellido,
+        dni: empleado.dni,
+        fechaNac: formatDateNac(empleado.fechaNac),
+        sexo: empleado.sexo,
+        direccion: empleado.direccion,
+        telefono1: empleado.telefono1,
+        telefono2: formatTel(empleado.telefono2),
+        email: formatEmail(empleado.email),
+        tipo: empleado.tipo,
+        fechaAlta: formatDate(empleado.fechaAlta),
+        estado: empleado.estado,
         creado: formatDate(empleado.creado),
+
       }));
 
       //exportamos la tabla a un archivo csv
