@@ -16,43 +16,125 @@
   </nav>
   <!-- fin de nav -->
 
-  <div class="container-fluid p-5 pt-3">
+  <div class="container align-items-center py-2">
     <h1 class="fs-2 mt-3 text-center">Modificar un Empleado</h1>
 
-    <form id="formulario">
+    <form id="formulario" class="align-middle pb-4">
       <div class="row mt-4">
-        <!-- input -->
-        <div class="col-md-4">
-          <label for="validationCustom01" class="form-label">Nombre</label>
+        <img class="col-md-3" src="../../assets/images/Movimiento Octubres.jpeg" width="200" height="200">
+        <div class="col-md-8">
+          <label for="exampleFormControlFile1">Imagen de Perfil</label>
+          <p></p>
+          <input type="file" class="form-control w-100" id="exampleFormControlFile1">
+        </div>
+      </div>
+      <!-- fila -->
+      <div class="row mt-3">
+
+        <div class="col-md-6">
+          <label for="validationCustom01" class="form-label">Nombre/s *</label>
           <input type="text" class="form-control" id="nombre" required maxlength="20"
             pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{4,20}">
           <span class="validity"></span>
           <p style="color: grey;">Los nombres deben tener como maximo 20 caracteres</p>
         </div>
-        <!-- input -->
-        <div class="col-md-4">
-          <label class="form-label">Apellido</label>
+
+        <div class="col-md-6">
+          <label class="form-label">Apellido/s *</label>
           <input type="text" class="form-control" id="apellido" required maxlength="20"
             pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{4,20}">
         </div>
-        <!-- input -->
-        <div class="col-md-4">
-          <label class="form-label">Elegir tipo de empleado</label>
-          <select id="tipo" class="form-select" required>
+      </div>
+      <!-- fila -->
+      <div class="row ">
+        <div class="col-md-6">
+          <label class="form-label">DNI *</label>
+          <input type="number" class="form-control" id="dni" required min="0" max="1000000000">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Género *</label>
+          <select id="sexo" class="form-select" required>
             <option selected disabled value="">--Elegir--</option>
-            <option id="empleado" value="empleado">Empleado</option>
-            <option id="seguridad" value="seguridad">Seguridad</option>
-            <option id="limpieza" value="limpieza">Limpieza</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="no-especifica">No Especifica</option>
           </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-warning mt-5 d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square"
-          viewBox="0 0 16 16">
+      <!-- fila -->
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label for="start">Fecha de Nacimiento: *</label>
+          <p></p>
+          <input type="date" name="fechaNac" id="fechaNac" name="trip-start" style="width: 200px;" required>
+        </div>
+        <div class="col-md-4">
+          <label for="exampleFormControlInput1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Tipo de empleado *</label>
+          <input class="form-control" list="datalistOptions" id="tipoEmpleado" placeholder="Tipo" required
+            maxlength="20"
+            pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{4,20}">
+          <datalist id="datalistOptions">
+            <option value="Seguridad">
+            <option value="Limpieza">
+            <option value="Informática">
+            <option value="Negocio">
+            <option value="Otros">
+          </datalist>
+        </div>
+      </div>
+      <!-- fila -->
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <label class="form-label">Dirección *</label>
+          <input type="text" class="form-control" id="direccion" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Telefono/Celular 1 *</label>
+          <input type="number" class="form-control" id="tel1" required>
+
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Telefono/Celular 2</label>
+          <input type="number" class="form-control" id="tel2">
+
+        </div>
+      </div>
+
+      <!-- fila -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <label for="exampleFormControlFile1">DNI Frontal</label>
+          <p></p>
+          <input type="file" class="form-control w-100" id="exampleFormControlFile1">
+
+        </div>
+        <div class="col-md-6">
+          <label for="exampleFormControlFile1">DNI Trasero</label>
+          <p></p>
+          <input type="file" class="form-control w-100" id="exampleFormControlFile1">
+
+        </div>
+      </div>
+      <!-- fila -->
+      <!-- <div class="row mt-3">
+        <div class="col-md-6">
+          <img src="../../../../../../1.jpg" width="250" height="150">
+        </div>
+        <div class="col-md-6">
+          <img src="../../../../../../1.jpg" width="250" height="150">
+        </div>
+      </div> -->
+      <p class="mt-5" style="color: grey;">Los campos marcados con (*) son obligatiorios</p>
+
+      <button type="submit" class="btn btn-primary d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
           <path
-            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-          <path fill-rule="evenodd"
-            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
         </svg>
         <div class="mx-1">Modificar Empleado</div>
       </button>
@@ -62,5 +144,9 @@
 </body>
 <script src="./form-edit.js"></script>
 
+<script>
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementsByName("fechaNac")[0].setAttribute('max', today);
+</script>
 
 </html>
