@@ -43,6 +43,7 @@ async function formHandler(ev) {
 
     // Caso exitoso
     alertSuccess(`Bienvenido ${user.nombre}`);
+    localStorage.setItem('currentUser', JSON.stringify(user));
     window.location.href = '../home/home.html';
   } catch (error) {
     console.log(error);
