@@ -1,4 +1,4 @@
-const { Grid, h } = require('gridjs');
+const { Grid, h, html } = require('gridjs');
 const { deleteEmployee } = require('../services/employees.service');
 const {
   alertSuccess,
@@ -31,7 +31,20 @@ const columns = [
   { name: 'id', hidden: true },
   { name: 'Nombre' },
   { name: 'Apellido' },
-  { name: 'Estado' },
+  {
+    name: 'Estado',
+    formatter: (cell) =>
+      h(
+        'div',
+        {
+          className: `badge bg-${
+            cell === 'ALTA' ? 'success' : cell === 'PROCESO' ? 'info' : 'danger'
+          } w-100 d-flex align-items-center justify-content-center`,
+          style: 'height:30px;',
+        },
+        cell
+      ),
+  },
   { name: 'DNI' },
   { id: 'tipoEmpleado', name: 'Tipo de Empleado' },
   // action buttons
