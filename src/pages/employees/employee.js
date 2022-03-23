@@ -10,6 +10,8 @@ async function DOMLoadedHandler() {
   nav.innerHTML = navbar(false);
   const employee = await getEmployeeById(parseInt(employeeId));
   console.log(employee);
+  //cuando se aprieta en modificar se manda el id del empleado al formulario
+  //para modificarlo
   boton.onclick = modificar;
   function modificar() {
     localStorage.setItem('id', employee.id);
