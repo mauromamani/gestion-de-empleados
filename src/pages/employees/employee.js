@@ -1,6 +1,20 @@
 const { navbar } = require('../../components/navbar');
 const { getEmployeeById } = require('../../services/employees.service');
+const { formatDateNac, formatDate } = require('../../utils/formatDate');
 
+const nombre = document.getElementById('nombre');
+const apellido = document.getElementById('apellido');
+const dni = document.getElementById('dni');
+const email = document.getElementById('email');
+const sexo = document.getElementById('sexo');
+const direccion = document.getElementById('direccion');
+const telefono1 = document.getElementById('tel1');
+const telefono2 = document.getElementById('tel2');
+const fechaNac = document.getElementById('fechaNac');
+const tipo = document.getElementById('tipoEmpleado');
+const creado = document.getElementById('creado');
+const estado = document.getElementById('estado');
+const fechaEstado = document.getElementById('fechaEstado');
 const nav = document.getElementById('navbar');
 const boton = document.getElementById('modificar');
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
@@ -17,5 +31,18 @@ async function DOMLoadedHandler() {
     localStorage.setItem('id', employee.id);
     window.location.href = '../employees/form-edit.html';
   }
-  // Acá se cargaría la información a mostrar en el HTML
+  // Acá se carga la información a mostrar en el HTML
+  nombre.innerHTML = employee.nombre;
+  apellido.innerHTML = employee.apellido;
+  dni.innerHTML = employee.dni;
+  email.innerHTML = employee.email;
+  sexo.innerHTML = employee.sexo;
+  direccion.innerHTML = employee.direccion;
+  telefono1.innerHTML = employee.telefono1;
+  telefono2.innerHTML = employee.telefono2;
+  fechaNac.innerHTML = formatDateNac(employee.fechaNac);
+  tipo.innerHTML = employee.tipo;
+  creado.innerHTML = formatDate(employee.creado);
+  estado.innerHTML = employee.estado;
+  // falta fecha estado
 }
