@@ -6,6 +6,7 @@ const { alertSuccess, alertWarning } = require('../../utils/swal');
 const { navbar } = require('../../components/navbar');
 const { formatDateIso } = require('../../utils/formatDate');
 const { formatTel, formatEmail } = require('../../utils/formatData');
+const { validateImageSize } = require('../../utils/validator');
 // obtenemos el id de localstorage y lo convertimos a int
 const employeeId = parseInt(localStorage.getItem('id'));
 
@@ -22,6 +23,10 @@ const telefono2 = document.getElementById('tel2');
 const fechaNac = document.getElementById('fechaNac');
 const tipo = document.getElementById('tipoEmpleado');
 const nav = document.getElementById('navbar');
+// imagenes
+const imgPerfil = document.getElementById('img-perfil');
+const imgDniFrontal = document.getElementById('img-dni-frontal');
+const imgDniTrasero = document.getElementById('img-dni-trasero');
 
 // Events
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
@@ -53,6 +58,27 @@ async function formHandler(e) {
   const auxEmail = formatEmail(email.value);
   //formato tipo fecha para guardar en la bd
   const auxFechaNac = new Date(fechaNac.value);
+
+  // Validacion del tamaño de las imagenes
+  // Se realizan 3 validaciones distintas para dar al usuario un mensaje mas claro
+  if (validateImageSize(imgPerfil)) {
+    alertWarning('La imagen de perfil no debe superar el tamaño máximo de 2MB');
+    return;
+  }
+
+  if (validateImageSize(imgDniFrontal)) {
+    alertWarning(
+      'La imagen del DNI frontal no debe superar el tamaño máximo de 2MB'
+    );
+    return;
+  }
+
+  if (validateImageSize(imgDniTrasero)) {
+    alertWarning(
+      'La imagen del DNI trasero no debe superar el tamaño máximo de 2MB'
+    );
+    return;
+  }
 
   const updatedEmployee = {
     nombre: nombre.value,
