@@ -6,7 +6,8 @@ const { alertSuccess, alertWarning } = require('../../utils/swal');
 const { navbar } = require('../../components/navbar');
 const { formatDateIso } = require('../../utils/formatDate');
 const { formatTel, formatEmail } = require('../../utils/formatData');
-const { validateImageSize } = require('../../utils/validator');
+const { validateImageSize, validateImage } = require('../../utils/validator');
+const { blobToBase64, base64ToBuffer } = require('../../utils/blobManager');
 // obtenemos el id de localstorage y lo convertimos a int
 const employeeId = parseInt(localStorage.getItem('id'));
 
@@ -26,7 +27,7 @@ const nav = document.getElementById('navbar');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
-const imgDniTrasero = document.getElementById('img-dni-trasero');
+const imgDniTrasera = document.getElementById('img-dni-trasero');
 
 // Events
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
@@ -35,8 +36,9 @@ formulario.addEventListener('submit', formHandler);
 // Events functions
 async function DOMLoadedHandler() {
   nav.innerHTML = navbar(false);
-  console.log(localStorage.getItem('id'));
+
   const employee = await getEmployeeById(employeeId);
+
   nombre.value = employee.nombre;
   apellido.value = employee.apellido;
   dni.value = employee.dni;
@@ -73,7 +75,7 @@ async function formHandler(e) {
     return;
   }
 
-  if (validateImageSize(imgDniTrasero)) {
+  if (validateImageSize(imgDniTrasera)) {
     alertWarning(
       'La imagen del DNI trasero no debe superar el tamaño máximo de 2MB'
     );
@@ -92,6 +94,20 @@ async function formHandler(e) {
     fechaNac: auxFechaNac,
     tipo: tipo.value,
   };
+
+  // Conversion de las imagenes a base64 y blob
+  // En caso de que la validacion sea correcta se agrega al objeto updatedEmployee los campos necesarios para la imagen
+  if (validateImage(imgPerfil)) {
+    updatedEmployee.imgPerfil = await base64ToBuffer(imgPerfil);
+  }
+
+  if (validateImage(imgDniFrontal)) {
+    updatedEmployee.imgDniFrontal = await base64ToBuffer(imgDniFrontal);
+  }
+
+  if (validateImage(imgDniTrasera)) {
+    updatedEmployee.imgDniTrasera = await base64ToBuffer(imgDniTrasera);
+  }
 
   try {
     await updateEmployee(employeeId, updatedEmployee);

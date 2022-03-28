@@ -32,20 +32,7 @@ const getEmployeeById = async (id) => {
  * @returns {}Empleado
  */
 const createEmployee = async (data) => {
-  return await prisma.empleado.create({
-    data: {
-      nombre: data.nombre,
-      apellido: data.apellido,
-      dni: data.dni,
-      email: data.email,
-      sexo: data.sexo,
-      direccion: data.direccion,
-      telefono1: data.telefono1,
-      telefono2: data.telefono2,
-      fechaNac: data.fechaNac,
-      tipo: data.tipo,
-    },
-  });
+  return await prisma.empleado.create({ data });
 };
 
 /**
@@ -63,18 +50,7 @@ const updateEmployee = async (id, data) => {
 
   return await prisma.empleado.update({
     where: { id },
-    data: {
-      nombre: data.nombre,
-      apellido: data.apellido,
-      dni: data.dni,
-      email: data.email,
-      sexo: data.sexo,
-      direccion: data.direccion,
-      telefono1: data.telefono1,
-      telefono2: data.telefono2,
-      fechaNac: data.fechaNac,
-      tipo: data.tipo,
-    },
+    data: data,
   });
 };
 

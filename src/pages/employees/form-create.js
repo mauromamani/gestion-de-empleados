@@ -2,7 +2,8 @@ const { createEmployee } = require('../../services/employees.service');
 const { alertSuccess, alertWarning } = require('../../utils/swal');
 const { navbar } = require('../../components/navbar');
 const { formatTel, formatEmail } = require('../../utils/formatData');
-const { validateImageSize } = require('../../utils/validator');
+const { validateImageSize, validateImage } = require('../../utils/validator');
+const { base64ToBuffer } = require('../../utils/blobManager');
 
 // Html ref's
 const formulario = document.getElementById('formulario');
@@ -20,7 +21,7 @@ const nav = document.getElementById('navbar');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
-const imgDniTrasero = document.getElementById('img-dni-trasero');
+const imgDniTrasera = document.getElementById('img-dni-trasero');
 
 // Events
 formulario.addEventListener('submit', formHandler);
@@ -55,7 +56,7 @@ async function formHandler(e) {
     return;
   }
 
-  if (validateImageSize(imgDniTrasero)) {
+  if (validateImageSize(imgDniTrasera)) {
     alertWarning(
       'La imagen del DNI trasero no debe superar el tamaño máximo de 2MB'
     );
@@ -74,6 +75,18 @@ async function formHandler(e) {
     telefono2: auxTelefono2,
     fechaNac: auxFechaNac,
   };
+
+  if (validateImage(imgPerfil)) {
+    nuevoEmpleado.imgPerfil = await base64ToBuffer(imgPerfil);
+  }
+
+  if (validateImage(imgDniFrontal)) {
+    nuevoEmpleado.imgDniFrontal = await base64ToBuffer(imgDniFrontal);
+  }
+
+  if (validateImage(imgDniTrasera)) {
+    nuevoEmpleado.imgDniTrasera = await base64ToBuffer(imgDniTrasera);
+  }
 
   try {
     await createEmployee(nuevoEmpleado);
