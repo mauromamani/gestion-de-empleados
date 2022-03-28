@@ -96,16 +96,17 @@ async function formHandler(e) {
   };
 
   // Conversion de las imagenes a base64 y blob
+  // En caso de que la validacion sea correcta se agrega al objeto updatedEmployee los campos necesarios para la imagen
   if (validateImage(imgPerfil)) {
-    updatedEmployee.imgPerfil = base64ToBuffer(imgPerfil);
+    updatedEmployee.imgPerfil = await base64ToBuffer(imgPerfil);
   }
 
   if (validateImage(imgDniFrontal)) {
-    updatedEmployee.imgDniFrontal = base64ToBuffer(imgDniFrontal);
+    updatedEmployee.imgDniFrontal = await base64ToBuffer(imgDniFrontal);
   }
 
   if (validateImage(imgDniTrasera)) {
-    updatedEmployee.imgDniTrasera = base64ToBuffer(imgDniTrasera);
+    updatedEmployee.imgDniTrasera = await base64ToBuffer(imgDniTrasera);
   }
 
   try {
