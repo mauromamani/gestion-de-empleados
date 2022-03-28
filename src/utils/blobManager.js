@@ -9,4 +9,11 @@ const blobToBase64 = (file) => {
   });
 };
 
-module.exports = { blobToBase64 };
+const base64ToBuffer = async (file) => {
+  const imgBase64 = await blobToBase64(file.files[0]);
+  const imgBuffer = Buffer.from(imgBase64, 'base64url');
+
+  return imgBuffer;
+};
+
+module.exports = { blobToBase64, base64ToBuffer };

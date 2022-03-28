@@ -14,4 +14,12 @@ const validateImageSize = (image) => {
   return false;
 };
 
-module.exports = { validateImageSize };
+const validateImage = (image) => {
+  if (image.files && image.files.length === 1) {
+    return true;
+  }
+
+  return false;
+};
+
+module.exports = { validateImageSize, validateImage };
