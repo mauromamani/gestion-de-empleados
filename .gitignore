@@ -2,4 +2,3 @@
 node_modules/
 dist_electron/
 src/database/prisma/
-prisma/
