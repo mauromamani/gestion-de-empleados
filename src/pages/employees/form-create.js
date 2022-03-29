@@ -105,6 +105,9 @@ async function formHandler(e) {
     telefono1.value = '';
     telefono2.value = '';
     fechaNac.value = '';
+    imgPerfil.value = '';
+    imgDniFrontal.value = '';
+    imgDniTrasera.value = '';
     alertSuccess(`${nuevoEmpleado.nombre} ha sido creado con éxito`);
   } catch (err) {
     console.log(err);
