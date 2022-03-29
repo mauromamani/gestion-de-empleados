@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:1234@localhost:3306/test-prisma"
+  url      = "mysql://root:1234@localhost:3306/sistema"
 }
 
 model Empleado {
@@ -24,11 +24,11 @@ model Empleado {
   fechaNac      DateTime
   creado        DateTime  @default(now())
   fechaAlta     DateTime?
-  estado        Estados   @default(BAJA) 
+  estado        Estados   @default(BAJA)
   tipo          String
-  imgPerfil     Bytes? @map("img_perfil")
-  imgDniFrontal Bytes? @map("img_dni_frontal")
-  imgDniTrasera Bytes? @map("img_dni_trasera")
+  imgPerfil     Bytes?    @map("img_perfil")
+  imgDniFrontal Bytes?    @map("img_dni_frontal")
+  imgDniTrasera Bytes?    @map("img_dni_trasera")
 
   @@map(name: "empleados")
 }

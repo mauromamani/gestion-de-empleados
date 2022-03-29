@@ -17,6 +17,9 @@ const estado = document.getElementById('estado');
 const fechaEstado = document.getElementById('fechaEstado');
 const nav = document.getElementById('navbar');
 const boton = document.getElementById('modificar');
+const fotoPerfil = document.getElementById('fotoPerfil');
+const fotoDni1 = document.getElementById('fotoDni1');
+const fotoDni2 = document.getElementById('fotoDni2');
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 const employeeId = localStorage.getItem('employee-id');
 
@@ -44,5 +47,12 @@ async function DOMLoadedHandler() {
   tipo.innerHTML = employee.tipo;
   creado.innerHTML = formatDate(employee.creado);
   estado.innerHTML = employee.estado;
+  // fotoPerfil.innerHTML = employee.imgPerfil.toString('base64');
+  fotoPerfil.innerHTML = `<img src="data:image/jpeg;base64,${employee.imgPerfil.toString('base64')}" class="img-fluid rounded" style="height: 200px; width: 250px;" /> 
+  `;
+  fotoDni1.innerHTML = `<img src="data:image/jpeg;base64,${employee.imgDniFrontal.toString('base64')}"  style="width: 350px ; height: 200px;" /> 
+`;
+  fotoDni2.innerHTML = `<img src="data:image/jpeg;base64,${employee.imgDniTrasera.toString('base64')}"  style="width: 350px ; height: 200px;" /> 
+`;
   // falta fecha estado
 }
