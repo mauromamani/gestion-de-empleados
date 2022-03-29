@@ -46,7 +46,7 @@ async function DOMLoadedHandler() {
   fechaNac.innerHTML = formatDateNac(employee.fechaNac);
   tipo.innerHTML = employee.tipo;
   creado.innerHTML = formatDate(employee.creado);
-  estado.innerHTML = employee.estado;
+  estado.innerHTML = employee.estado === "ALTA" ? `<h5 style="color: green;">${employee.estado}</h5>` : employee.estado === "PROCESO" ? `<h5 style="color: yellow;">${employee.estado}</h5>` : employee.estado === "BAJA" ? `<h5 style="color: red;">${employee.estado}</h5>` : "";
   //falta formatear fecha estado
   fechaEstado.innerHTML = employee.fechaAlta ? employee.fechaAlta : "-";
 

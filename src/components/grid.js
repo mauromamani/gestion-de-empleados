@@ -37,9 +37,8 @@ const columns = [
       h(
         'div',
         {
-          className: `badge bg-${
-            cell === 'ALTA' ? 'success' : cell === 'PROCESO' ? 'info' : 'danger'
-          } w-100 d-flex align-items-center justify-content-center`,
+          className: `badge bg-${cell === 'ALTA' ? 'success' : cell === 'PROCESO' ? 'warning' : 'danger'
+            } w-100 d-flex align-items-center justify-content-center`,
           style: 'height:30px;',
         },
         cell
@@ -54,7 +53,7 @@ const columns = [
       return h(
         'button',
         {
-          className: 'btn btn-warning w-100',
+          className: 'btn btn-primary w-100',
           onClick: () => moreInfo(row),
         },
         'Ver más'
