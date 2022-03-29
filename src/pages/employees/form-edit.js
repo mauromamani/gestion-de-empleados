@@ -24,6 +24,9 @@ const telefono2 = document.getElementById('tel2');
 const fechaNac = document.getElementById('fechaNac');
 const tipo = document.getElementById('tipoEmpleado');
 const nav = document.getElementById('navbar');
+const fotoPerfil = document.getElementById('fotoPerfil');
+const fotoDni1 = document.getElementById('fotoDni1');
+const fotoDni2 = document.getElementById('fotoDni2');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
@@ -49,6 +52,10 @@ async function DOMLoadedHandler() {
   telefono2.value = employee.telefono2;
   fechaNac.value = formatDateIso(employee.fechaNac);
   tipo.value = employee.tipo;
+  fotoPerfil.innerHTML = employee.imgPerfil ? `<img src="data:image/jpeg;base64,${employee.imgPerfil.toString('base64')}" class="img-fluid rounded" style="height: 200px; width: 250px;" /> ` : null;
+  fotoDni1.innerHTML = employee.imgDniFrontal ? `<img src="data:image/jpeg;base64,${employee.imgDniFrontal.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
+  fotoDni2.innerHTML = employee.imgDniTrasera ? `<img src="data:image/jpeg;base64,${employee.imgDniTrasera.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
+
 }
 
 async function formHandler(e) {
@@ -111,7 +118,8 @@ async function formHandler(e) {
 
   try {
     await updateEmployee(employeeId, updatedEmployee);
-    alertSuccess(`${updatedEmployee.nombre} ha sido modificado con éxito`);
+    await alertSuccess(`${updatedEmployee.nombre} ha sido modificado con éxito`);
+    location.reload();
   } catch (err) {
     console.log(err);
     alertWarning();
