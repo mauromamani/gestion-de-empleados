@@ -85,13 +85,13 @@ async function DOMLoadedHandler() {
     divEliminar.style.display = "block";
   }
   botonEliminar.onclick = eliminar;
-  async function eliminar(e) {
-    const result = await alertConfirmation('Seguro de que quiere eliminar el empleado?', null);
+  async function eliminar() {
+    const result = await alertConfirmation(`Seguro de que quiere eliminar a ${employee.nombre} ?`, null);
     if (result.isConfirmed) {
       try {
         await deleteEmployee(employee.id);
-        alertSuccess(`El empleado fue eliminado con exito`);
-
+        await alertSuccess(`El empleado fue eliminado con exito`);
+        window.location.href = '../home/home.html';
       }
       catch (error) {
         console.log(error);
@@ -99,7 +99,6 @@ async function DOMLoadedHandler() {
       }
 
     }
-    e.preventDefault();
-    window.location.href = '../home/home.html';
+
   }
 }
