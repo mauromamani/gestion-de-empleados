@@ -88,7 +88,14 @@ async function formHandler(e) {
     fechaAlta: auxFechaAlta,
     estado: estado.value,
   };
-
+  nuevoEmpleado.fechaAlta = nuevoEmpleado.estado === 'ALTA' ? auxFechaAlta : null;
+  //probando xd
+  // if (nuevoEmpleado.estado === 'ALTA') {
+  //   nuevoEmpleado.fechaAlta = auxFechaAlta;
+  // }
+  // else {
+  //   nuevoEmpleado.fechaAlta = null;
+  // }
   if (validateImage(imgPerfil)) {
     nuevoEmpleado.imgPerfil = await base64ToBuffer(imgPerfil);
   }

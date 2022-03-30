@@ -8,11 +8,15 @@ const { formatDateIso } = require('../../utils/formatDate');
 const { formatTel, formatEmail } = require('../../utils/formatData');
 const { validateImageSize, validateImage } = require('../../utils/validator');
 const { blobToBase64, base64ToBuffer } = require('../../utils/blobManager');
+const { getCurrentUser } = require('../../utils/getCurrentUser');
+
 // obtenemos el id de localstorage y lo convertimos a int
 const employeeId = parseInt(localStorage.getItem('id'));
 
 // Html ref's
 const formulario = document.getElementById('formulario');
+const divEstado = document.getElementById('divEstado');
+const divFechaAlta = document.getElementById('divFechaAlta');
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const dni = document.getElementById('dni');
@@ -27,6 +31,8 @@ const nav = document.getElementById('navbar');
 const fotoPerfil = document.getElementById('fotoPerfil');
 const fotoDni1 = document.getElementById('fotoDni1');
 const fotoDni2 = document.getElementById('fotoDni2');
+const estado = document.getElementById('estado');
+const fechaAlta = document.getElementById('fechaAlta');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
@@ -39,9 +45,13 @@ formulario.addEventListener('submit', formHandler);
 // Events functions
 async function DOMLoadedHandler() {
   nav.innerHTML = navbar(false);
-
+  const currentUser = getCurrentUser();
+  if (currentUser.rol === 'ADMIN') {
+    divEstado.style.display = "block";
+    divFechaAlta.style.display = "block";
+  }
   const employee = await getEmployeeById(employeeId);
-
+  const auxFechaAlta = employee.fechaAlta ? formatDateIso(employee.fechaAlta) : "";
   nombre.value = employee.nombre;
   apellido.value = employee.apellido;
   dni.value = employee.dni;
@@ -50,8 +60,11 @@ async function DOMLoadedHandler() {
   direccion.value = employee.direccion;
   telefono1.value = employee.telefono1;
   telefono2.value = employee.telefono2;
+  estado.value = employee.estado;
   fechaNac.value = formatDateIso(employee.fechaNac);
+  fechaAlta.value = auxFechaAlta;
   tipo.value = employee.tipo;
+
   fotoPerfil.innerHTML = employee.imgPerfil ? `<img src="data:image/jpeg;base64,${employee.imgPerfil.toString('base64')}" class="img-fluid rounded" style="height: 200px; width: 230px;" /> ` : null;
   fotoDni1.innerHTML = employee.imgDniFrontal ? `<img src="data:image/jpeg;base64,${employee.imgDniFrontal.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
   fotoDni2.innerHTML = employee.imgDniTrasera ? `<img src="data:image/jpeg;base64,${employee.imgDniTrasera.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
@@ -67,6 +80,7 @@ async function formHandler(e) {
   const auxEmail = formatEmail(email.value);
   //formato tipo fecha para guardar en la bd
   const auxFechaNac = new Date(fechaNac.value);
+  const auxFechaAlta = fechaAlta ? new Date(fechaAlta.value) : null;
 
   // Validacion del tamaño de las imagenes
   // Se realizan 3 validaciones distintas para dar al usuario un mensaje mas claro
@@ -100,7 +114,10 @@ async function formHandler(e) {
     telefono2: auxTelefono2,
     fechaNac: auxFechaNac,
     tipo: tipo.value,
+    fechaAlta: auxFechaAlta,
+    estado: estado.value,
   };
+  updatedEmployee.fechaAlta = updatedEmployee.estado === 'ALTA' ? auxFechaAlta : null;
 
   // Conversion de las imagenes a base64 y blob
   // En caso de que la validacion sea correcta se agrega al objeto updatedEmployee los campos necesarios para la imagen

@@ -22,7 +22,7 @@ const formatDateNac = (date) => {
 const formatDateIso = (date) => {
   if ((date.getMonth() + 1) >= 10) {
     let formattedDate =
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '/' + (date.getDate() + 1);
+      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate() + 1);
     return formattedDate.toString();
   }
   else {

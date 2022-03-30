@@ -62,8 +62,8 @@ async function DOMLoadedHandler() {
         : employee.estado === 'BAJA'
           ? `<h5 style="color: #e74c3c;">${employee.estado}</h5>`
           : '';
-  //falta formatear fecha estado
-  fechaEstado.innerHTML = employee.fechaAlta ? employee.fechaAlta : '-';
+  //formateo de fecha Alta
+  fechaEstado.innerHTML = employee.fechaAlta ? formatDateNac(employee.fechaAlta) : '-';
 
   // fotoPerfil.innerHTML = employee.imgPerfil.toString('base64');
   fotoPerfil.innerHTML = employee.imgPerfil
