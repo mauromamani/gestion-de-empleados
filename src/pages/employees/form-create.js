@@ -4,9 +4,12 @@ const { navbar } = require('../../components/navbar');
 const { formatTel, formatEmail } = require('../../utils/formatData');
 const { validateImageSize, validateImage } = require('../../utils/validator');
 const { base64ToBuffer } = require('../../utils/blobManager');
+const { getCurrentUser } = require('../../utils/getCurrentUser');
 
 // Html ref's
 const formulario = document.getElementById('formulario');
+const divEstado = document.getElementById('divEstado');
+const divFechaAlta = document.getElementById('divFechaAlta');
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const dni = document.getElementById('dni');
@@ -18,6 +21,8 @@ const telefono2 = document.getElementById('tel2');
 const fechaNac = document.getElementById('fechaNac');
 const tipo = document.getElementById('tipoEmpleado');
 const nav = document.getElementById('navbar');
+const estado = document.getElementById('estado');
+const fechaAlta = document.getElementById('fechaAlta');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
@@ -30,6 +35,11 @@ window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 // Events functions
 function DOMLoadedHandler() {
   nav.innerHTML = navbar(false, 'form-create');
+  const currentUser = getCurrentUser();
+  if (currentUser.rol === 'ADMIN') {
+    divEstado.style.display = "block";
+    divFechaAlta.style.display = "block";
+  }
 }
 
 async function formHandler(e) {
@@ -41,6 +51,7 @@ async function formHandler(e) {
   const auxEmail = formatEmail(email.value);
   // Formato tipo fecha para guardar en la bd
   const auxFechaNac = new Date(fechaNac.value);
+  const auxFechaAlta = fechaAlta ? new Date(fechaAlta.value) : null;
 
   // Validacion del tamaño de las imagenes
   // Se realizan 3 validaciones distintas para dar al usuario un mensaje mas claro
@@ -74,6 +85,8 @@ async function formHandler(e) {
     telefono1: auxTelefono1,
     telefono2: auxTelefono2,
     fechaNac: auxFechaNac,
+    fechaAlta: auxFechaAlta,
+    estado: estado.value,
   };
 
   if (validateImage(imgPerfil)) {
@@ -108,6 +121,8 @@ async function formHandler(e) {
     imgPerfil.value = '';
     imgDniFrontal.value = '';
     imgDniTrasera.value = '';
+    estado.value = '';
+    fechaAlta.value = '';
     alertSuccess(`${nuevoEmpleado.nombre} ha sido creado con éxito`);
   } catch (err) {
     console.log(err);

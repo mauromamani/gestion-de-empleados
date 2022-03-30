@@ -52,7 +52,7 @@ async function DOMLoadedHandler() {
   telefono2.value = employee.telefono2;
   fechaNac.value = formatDateIso(employee.fechaNac);
   tipo.value = employee.tipo;
-  fotoPerfil.innerHTML = employee.imgPerfil ? `<img src="data:image/jpeg;base64,${employee.imgPerfil.toString('base64')}" class="img-fluid rounded" style="height: 200px; width: 250px;" /> ` : null;
+  fotoPerfil.innerHTML = employee.imgPerfil ? `<img src="data:image/jpeg;base64,${employee.imgPerfil.toString('base64')}" class="img-fluid rounded" style="height: 200px; width: 230px;" /> ` : null;
   fotoDni1.innerHTML = employee.imgDniFrontal ? `<img src="data:image/jpeg;base64,${employee.imgDniFrontal.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
   fotoDni2.innerHTML = employee.imgDniTrasera ? `<img src="data:image/jpeg;base64,${employee.imgDniTrasera.toString('base64')}"  style="width: 350px ; height: 200px;" /> ` : null;
 

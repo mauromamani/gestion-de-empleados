@@ -119,7 +119,23 @@
 
         </div>
       </div>
+      <!-- fila -->
+      <div class="row mt-3">
+        <div id="divEstado" class="col-md-6" style="display: none;">
+          <label class="form-label">Estado del Empleado</label>
+          <select id="estado" class="form-select" required>
+            <option selected disabled value="">--Elegir--</option>
+            <option value="ALTA">ALTA</option>
+            <option value="PROCESO">PROCESO</option>
+            <option value="BAJA">BAJA</option>
+          </select>
+        </div>
+        <div id="divFechaAlta" class="col-md-6" style="display: none;">
+          <label class="form-label">Fecha de Alta</label>
+          <input type="date" name="fechaAlta" id="fechaAlta" name="trip-start" class="form-control w-100" required>
+        </div>
 
+      </div>
       <!-- fila -->
       <div class="row mt-3">
         <div class="col-md-6">
