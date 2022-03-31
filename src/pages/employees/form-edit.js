@@ -37,13 +37,19 @@ const fechaAlta = document.getElementById('fechaAlta');
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
 const imgDniTrasera = document.getElementById('img-dni-trasero');
-
+const botonAtras = document.getElementById('atras');
 // Events
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 formulario.addEventListener('submit', formHandler);
 
 // Events functions
 async function DOMLoadedHandler() {
+  //boton volver
+  botonAtras.onclick = atras;
+  function atras() {
+    localStorage.setItem('id', employee.id);
+    window.location.href = './employee.html';
+  }
   nav.innerHTML = navbar(false);
   const currentUser = getCurrentUser();
   if (currentUser.rol === 'ADMIN') {
@@ -73,6 +79,7 @@ async function DOMLoadedHandler() {
 
 async function formHandler(e) {
   e.preventDefault();
+
   //parse de datos para guardar a la db de forma correcta
   const auxDni = parseInt(dni.value);
   const auxTelefono1 = parseInt(telefono1.value);
@@ -81,7 +88,7 @@ async function formHandler(e) {
   //formato tipo fecha para guardar en la bd
   const auxFechaNac = new Date(fechaNac.value);
   const auxFechaAlta = fechaAlta ? new Date(fechaAlta.value) : null;
-
+  console.log(auxFechaAlta);
   // Validacion del tamaño de las imagenes
   // Se realizan 3 validaciones distintas para dar al usuario un mensaje mas claro
   if (validateImageSize(imgPerfil)) {
@@ -142,3 +149,4 @@ async function formHandler(e) {
     alertWarning();
   }
 }
+

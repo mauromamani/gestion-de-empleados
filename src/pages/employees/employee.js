@@ -28,6 +28,8 @@ const fotoDni1 = document.getElementById('fotoDni1');
 const fotoDni2 = document.getElementById('fotoDni2');
 const botonEliminar = document.getElementById('eliminar');
 const divEliminar = document.getElementById('divEliminar');
+const botonAtras = document.getElementById('atras');
+
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 const employeeId = localStorage.getItem('employee-id');
 async function DOMLoadedHandler() {
@@ -41,6 +43,10 @@ async function DOMLoadedHandler() {
   function modificar() {
     localStorage.setItem('id', employee.id);
     window.location.href = '../employees/form-edit.html';
+  }
+  botonAtras.onclick = atras;
+  function atras() {
+    window.location.href = '../home/home.html';
   }
   // Acá se carga la información a mostrar en el HTML
   nombre.innerHTML = employee.nombre;

@@ -15,7 +15,20 @@
 
   </nav>
   <!-- fin de nav -->
-
+  <div>
+    <button id="atras" class="btn btn-outline-primary mt-1">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
+        x="0px" y="0px" width="20" height="20" viewBox="0 0 459 459" style="enable-background:new 0 0 459 459;"
+        xml:space="preserve" fill="currentColor" class="bi bi-people-fill">
+        <g>
+          <g id="reply">
+            <path
+              d="M178.5,140.25v-102L0,216.75l178.5,178.5V290.7c127.5,0,216.75,40.8,280.5,130.05C433.5,293.25,357,165.75,178.5,140.25z" />
+          </g>
+        </g>
+      </svg>
+      Atrás</button>
+  </div>
 
   <div class="container align-items-center py-2" style="width: 800px; height: 500px;">
     <h3 class=" text-center">Ingrese los datos de un Empleado</h3>
@@ -110,12 +123,12 @@
         </div>
         <div class="col-md-4">
           <label class="form-label">Telefono/Celular 1 *</label>
-          <input type="number" class="form-control" id="tel1" required>
+          <input type="number" class="form-control" id="tel1" min="0" max="10000000000000" required>
 
         </div>
         <div class="col-md-4">
           <label class="form-label">Telefono/Celular 2</label>
-          <input type="number" class="form-control" id="tel2">
+          <input type="number" class="form-control" id="tel2" min="0" max="10000000000000">
 
         </div>
       </div>

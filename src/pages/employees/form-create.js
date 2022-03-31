@@ -23,6 +23,7 @@ const tipo = document.getElementById('tipoEmpleado');
 const nav = document.getElementById('navbar');
 const estado = document.getElementById('estado');
 const fechaAlta = document.getElementById('fechaAlta');
+const botonAtras = document.getElementById('atras');
 // imagenes
 const imgPerfil = document.getElementById('img-perfil');
 const imgDniFrontal = document.getElementById('img-dni-frontal');
@@ -31,7 +32,6 @@ const imgDniTrasera = document.getElementById('img-dni-trasero');
 // Events
 formulario.addEventListener('submit', formHandler);
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
-
 // Events functions
 function DOMLoadedHandler() {
   nav.innerHTML = navbar(false, 'form-create');
@@ -39,6 +39,10 @@ function DOMLoadedHandler() {
   if (currentUser.rol === 'ADMIN') {
     divEstado.style.display = "block";
     divFechaAlta.style.display = "block";
+  }
+  botonAtras.onclick = atras;
+  function atras() {
+    window.location.href = '../home/home.html';
   }
 }
 
