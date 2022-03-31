@@ -8,21 +8,25 @@ const { navbar } = require('../../components/navbar');
 // HTMl ref's
 const tableWrapper = document.getElementById('table-wrapper');
 const nav = document.getElementById('navbar');
+
 // Events
 window.addEventListener('DOMContentLoaded', DOMLoadedHandler);
 
 // Functions
 async function DOMLoadedHandler() {
   // ejemplo de obtencion del usuario autenticado
-  const currentUser = getCurrentUser();
-  console.log(currentUser);
+  //const currentUser = getCurrentUser();
+  // console.log(currentUser);
 
   nav.innerHTML = navbar(true, 'home');
 
   document
+    .getElementById('salir')
+    .addEventListener('click', cerrarSesion);
+
+  document
     .getElementById('exportar')
     .addEventListener('click', exportTableHandler);
-
   try {
     const employees = await getAllEmployees();
 
@@ -51,4 +55,8 @@ async function DOMLoadedHandler() {
 
 function exportTableHandler() {
   exportTable();
+}
+function cerrarSesion() {
+  localStorage.clear();
+  window.location.href = '../auth/login.html';
 }
