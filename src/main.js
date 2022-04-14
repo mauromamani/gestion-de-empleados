@@ -17,7 +17,7 @@ function createWindow() {
 
   win.loadURL(`file://${path.join(__dirname, 'pages/auth/login.html')}`);
 
-  win.setMenu(null);
+  // win.setMenu(null);
 }
 
 app.whenReady().then(() => {
